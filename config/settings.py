@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Мои приложения
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -72,12 +78,31 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+ENGINE = os.getenv('DATABASE_ENGINE')
+PAD = os.getenv('DATABASE_PAD')             # База прокладка (для создания новых баз)
+NAME = os.getenv('DATABASE_NAME')
+USER = os.getenv('DATABASE_USER')
+PASSWORD = os.getenv('DATABASE_PASSWORD')
+HOST = os.getenv('DATABASE_HOST')
+PORT = os.getenv('DATABASE_PORT')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+	'ENGINE': ENGINE,
+	'NAME': NAME,
+	'USER': USER,
+	'PASSWORD': PASSWORD,
+	'HOST': HOST,
+	'PORT': PORT,
+	}
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
