@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404
 
@@ -13,7 +13,7 @@ class PostListView(ListView):
     queryset = Post.published.all()             # Используем только опубликованные посты
     context_object_name = 'posts'               # В шаблоне будет - {% for post in posts %} (список постов).
     template_name = 'blog/blog.html'
-    paginate_by = 2
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         """
@@ -26,6 +26,26 @@ class PostListView(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Блог'
         return context
+
+    def paginate_queryset(self, queryset, page_size):
+        """
+        Переопределяем пагинацию:
+        - При PageNotAnInteger (не число) → первая страница.
+        - При EmptyPage (страницы не существует) → последняя страница.
+        """
+        paginator = Paginator(queryset, page_size)
+        page_number = self.request.GET.get('page', 1)
+
+        try:
+            page_obj = paginator.page(page_number)
+        except PageNotAnInteger:
+            # Если page не число (например, ?page=abc) → показываем первую страницу
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            # Если страницы не существует (например, ?page=999) → показываем последнюю
+            page_obj = paginator.page(paginator.num_pages)
+
+        return paginator, page_obj, page_obj.object_list, page_obj.has_other_pages()
 
 
 # def post_list(request):                       # удалить, если BlogListView написан корректно
