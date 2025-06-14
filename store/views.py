@@ -1,10 +1,13 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.shortcuts import render
 from store.models import Product
 
 
 def index(request):
-    return render(request, 'store/index.html')
+    context = {
+        'title': 'Furea - Furniture eCommerce'
+    }
+    return render(request, 'store/index.html', context=context)
 
 # def index(request):
 #     context = {
@@ -13,8 +16,8 @@ def index(request):
 #     }
 #     return render(request, 'dogs/index.html', context)
 
-def shop(request):
-    return render(request, 'store/shop.html')
+# def shop(request):
+#     return render(request, 'store/shop.html')
 
 class ShopMainListView(ListView):
     model = Product
@@ -23,3 +26,5 @@ class ShopMainListView(ListView):
         'title': 'Мой первый title'
     }
 
+class ShopContactListView(TemplateView):
+    template_name = 'store/contact.html'
