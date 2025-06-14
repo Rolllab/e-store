@@ -1,44 +1,24 @@
- <!--templates/base.html-->
-{#{% load static %}#}
-{#<!doctype html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <link rel="stylesheet" href="{% static 'css/style.css' %}">#}
-{#</head>#}
-{#<header>#}
-{#    <p>Это header</p>#}
-{#</header>#}
-{#<body>#}
-{#    {% block content %}{% endblock %}#}
-{#</body>#}
-{#<footer>#}
-{#    <p>Это footer</p>#}
-{#</footer>#}
-{#</html>#}
-
-
-
 {% load static %}
 <!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>Furea - Furniture eCommerce HTML Template</title>
+  <title>{{ title }}</title>
   <meta name="description" content="Morden Bootstrap HTML5 Template">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="../static/img/favicon.png">
+  <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
 
    <!-- ======= All CSS Plugins here ========-->
-  <link rel="stylesheet" href="../static/css/plugins/swiper-bundle.min.css">
-  <link rel="stylesheet" href="../static/css/plugins/glightbox.min.css">
+  <link href="{% static 'css/plugins/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/plugins/glightbox.min.css' %}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 
   <!-- Plugin css-->
-  <link rel="stylesheet" href="../static/css/vendor/bootstrap.min.css">
+  <link href="{% static 'css/vendor/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom Style CSS-->
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -56,7 +36,7 @@
                         <ul class="d-flex align-items-center">
                             <li class="language__currency&#45;&#45;list">
                                 <a class="account__currency&#45;&#45;link text-white" href="#">
-                                    <img src="../static/img/icon/usd-icon.webp" alt="currency">
+                                    <img src="{% static 'img/icon/usd-icon.webp' %}" alt="currency">
                                     <span>Currency</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
                                         <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
@@ -64,16 +44,17 @@
                                 </a>
                                 <div class="dropdown__currency">
                                     <ul>
-                                        <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
                                         <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
+                                        <li class="currency__items"><a class="currency__text" href="#">RUB</a></li>
                                         <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
+                                        <li class="currency__items"><a class="currency__text" href="#">USD</a></li>
+                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
                                     </ul>
                                 </div>
                             </li>
                             <li class="language__currency&#45;&#45;list">
                                 <a class="language__switcher text-white" href="#">
-                                    <img class="language__switcher&#45;&#45;icon__img" src="../static/img/icon/flags/ru.webp" alt="currency">
+                                    <img class="language__switcher&#45;&#45;icon__img" src="{% static 'img/icon/flags/ru.webp' %}" alt="language">
                                     <span>Language</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
                                         <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
@@ -105,34 +86,34 @@
                         </a>
                     </div>
                     <div class="main__logo">
-                        <h1 class="main__logo&#45;&#45;title"><a class="main__logo&#45;&#45;link" href="index.html"><img class="main__logo&#45;&#45;img" src="../static/img/logo/red_blue_flumidor.webp" alt="logo-img"></a></h1>
+                        <h1 class="main__logo&#45;&#45;title"><a class="main__logo&#45;&#45;link" href="{% url 'store:index' %}"><img class="main__logo&#45;&#45;img" src="{% static 'img/logo/red_blue_flumidor.webp' %}" alt="logo-img"></a></h1>
                     </div>
                     <div class="header__menu d-none d-lg-block">
                         <nav class="header__menu&#45;&#45;navigation">
                             <ul class="d-flex">
                                 <li class="header__menu&#45;&#45;items">
-                                    <a class="header__menu&#45;&#45;link" href="index.html">Home <span class="menu__plus&#45;&#45;icon">+</span></a>
+                                    <a class="header__menu&#45;&#45;link" href="{% url 'store:index' %}">Home <span class="menu__plus&#45;&#45;icon">+</span></a>
                                     <ul class="header__sub&#45;&#45;menu">
-                                        <li class="header__sub&#45;&#45;menu__items"><a href="index.html" class="header__sub&#45;&#45;menu__link">Home page one</a></li>
+                                        <li class="header__sub&#45;&#45;menu__items"><a href="{% url 'store:index' %}" class="header__sub&#45;&#45;menu__link">Home page one</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="index-2.html" class="header__sub&#45;&#45;menu__link">Home page two</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="index-3.html" class="header__sub&#45;&#45;menu__link">Home page three</a></li>
                                     </ul>
                                 </li>
                                 <li class="header__menu&#45;&#45;items mega__menu&#45;&#45;items">
-                                    <a class="header__menu&#45;&#45;link" href="shop.html">Shop <span class="menu__plus&#45;&#45;icon">+</span></a>
+                                    <a class="header__menu&#45;&#45;link" href="{% url 'store:shop_main' %}">Магазин <span class="menu__plus&#45;&#45;icon">+</span></a>
                                     <ul class="header__mega&#45;&#45;menu d-flex">
                                         <li class="header__mega&#45;&#45;menu__li">
-                                            <span class="header__mega&#45;&#45;subtitle">Column One</span>
+                                            <span class="header__mega&#45;&#45;subtitle">Мягкая мебель</span>
                                             <ul class="header__mega&#45;&#45;sub__menu">
-                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="shop.html">Shop Left Sidebar</a></li>
-                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="{% url 'store:shop_main' %}">Магазин с левым слайд-баром</a></li>
+                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="shop-right-sidebar.html">Магазин с правым слайд-баром</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="shop-grid.html">Shop Grid</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="shop-grid-list.html">Shop Grid List</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="shop-list.html">Shop List</a></li>
                                             </ul>
                                         </li>
                                         <li class="header__mega&#45;&#45;menu__li">
-                                            <span class="header__mega&#45;&#45;subtitle">Column Two</span>
+                                            <span class="header__mega&#45;&#45;subtitle">Корпусная мебель</span>
                                             <ul class="header__mega&#45;&#45;sub__menu">
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="product-details.html">Standard Product</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="product-variable.html">Video Product</a></li>
@@ -142,17 +123,16 @@
                                             </ul>
                                         </li>
                                         <li class="header__mega&#45;&#45;menu__li">
-                                            <span class="header__mega&#45;&#45;subtitle">Column Three</span>
+                                            <span class="header__mega&#45;&#45;subtitle">Столы</span>
                                             <ul class="header__mega&#45;&#45;sub__menu">
-                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="my-account.html">My Account</a></li>
-                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="my-account-2.html">My Account 2</a></li>
+                                                <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="#">My Account</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="404.html">404 Page</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="login.html">Login Page</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="faq.html">Faq Page</a></li>
                                             </ul>
                                         </li>
                                         <li class="header__mega&#45;&#45;menu__li">
-                                            <span class="header__mega&#45;&#45;subtitle">Column Four</span>
+                                            <span class="header__mega&#45;&#45;subtitle">Стулья</span>
                                             <ul class="header__mega&#45;&#45;sub__menu">
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="compare.html">Compare Pages</a></li>
                                                 <li class="header__mega&#45;&#45;sub__menu_li"><a class="header__mega&#45;&#45;sub__menu&#45;&#45;title" href="cart.html">Cart Page</a></li>
@@ -167,10 +147,12 @@
                                     <a class="header__menu&#45;&#45;link" href="about.html">About US </a>
                                 </li>
                                 <li class="header__menu&#45;&#45;items">
-                                    <a class="header__menu&#45;&#45;link" href="blog.html">Blog <span class="menu__plus&#45;&#45;icon">+</span> </a>
+                                    <a class="header__menu&#45;&#45;link" href="{% url 'blog:post_list' %}">Blog <span class="menu__plus&#45;&#45;icon">+</span> </a>
                                     <ul class="header__sub&#45;&#45;menu">
-                                        <li class="header__sub&#45;&#45;menu__items"><a href="blog.html" class="header__sub&#45;&#45;menu__link">Blog Grid</a></li>
-                                        <li class="header__sub&#45;&#45;menu__items"><a href="blog-details.html" class="header__sub&#45;&#45;menu__link">Blog Details</a></li>
+                                        {% for post in posts %}
+                                            <li class="header__sub&#45;&#45;menu__items"><a href="{% url 'blog:post_detail' post.pk %}" class="header__sub&#45;&#45;menu__link">Blog Grid</a></li>
+                                        {% endfor %}
+                                        <li class="header__sub&#45;&#45;menu__items"><a href="{{ post }}" class="header__sub&#45;&#45;menu__link">Blog Details</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="blog-left-sidebar.html" class="header__sub&#45;&#45;menu__link">Blog Left Sidebar</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="blog-right-sidebar.html" class="header__sub&#45;&#45;menu__link">Blog Right Sidebar</a></li>
                                     </ul>
@@ -179,7 +161,7 @@
                                     <a class="header__menu&#45;&#45;link " href="#">Pages <span class="menu__plus&#45;&#45;icon">+</span></a>
                                     <ul class="header__sub&#45;&#45;menu">
                                         <li class="header__sub&#45;&#45;menu__items"><a href="about.html" class="header__sub&#45;&#45;menu__link">About Us</a></li>
-                                        <li class="header__sub&#45;&#45;menu__items"><a href="contact.html" class="header__sub&#45;&#45;menu__link">Contact Us</a></li>
+                                        <li class="header__sub&#45;&#45;menu__items"><a href="{% url 'store:contact' %}" class="header__sub&#45;&#45;menu__link">Contact Us</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="cart.html" class="header__sub&#45;&#45;menu__link">Cart Page</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="portfolio.html" class="header__sub&#45;&#45;menu__link">Portfolio Page</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="wishlist.html" class="header__sub&#45;&#45;menu__link">Wishlist Page</a></li>
@@ -188,21 +170,21 @@
                                     </ul>
                                 </li>
                                 <li class="header__menu&#45;&#45;items">
-                                    <a class="header__menu&#45;&#45;link" href="contact.html">Contact </a>
+                                    <a class="header__menu&#45;&#45;link" href="{% url 'store:contact' %}">Contact </a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                     <div class="header__account">
                         <ul class="d-flex">
-                            <li class="header__account&#45;&#45;items  header__account&#45;&#45;search__items d-md-none">
+                            <li class="header__account&#45;&#45;items  header__account&#45;&#45;search__items">
                                 <a class="header__account&#45;&#45;btn search__open&#45;&#45;btn" href="javascript:void(0)">
                                     <svg class="header__search&#45;&#45;button__svg" xmlns="http://www.w3.org/2000/svg" width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448"/></svg>
                                     <span class="visually-hidden">Search</span>
                                 </a>
                             </li>
                             <li class="header__account&#45;&#45;items">
-                                <a class="header__account&#45;&#45;btn" href="my-account.html">
+                                <a class="header__account&#45;&#45;btn" href="{% if user.is_authenticated %}{% url 'users:user_detail' pk=user.pk %}{% else %}{% url 'users:user_login' %}{% endif %}">
                                     <svg xmlns="http://www.w3.org/2000/svg"  width="26.51" height="23.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
                                     <span class="visually-hidden">My Account</span>
                                 </a>
@@ -232,148 +214,14 @@
         <!-- End main header-->
 
         <!-- Start Offcanvas header menu-->
-        <div class="offcanvas__header" tabindex="-1">
-            <div class="offcanvas__inner">
-                <div class="offcanvas__logo">
-                    <a class="offcanvas__logo_link" href="index.html">
-                        <img src="../static/img/logo/red_blue_flumidor.webp" alt="Furea Logo">
-                    </a>
-                    <button class="offcanvas__close&#45;&#45;btn" aria-label="offcanvas close btn">close</button>
-                </div>
-                <nav class="offcanvas__menu">
-                    <ul class="offcanvas__menu_ul">
-                        <li class="offcanvas__menu_li">
-                            <a class="offcanvas__menu_item" href="index.html">Home</a>
-                            <ul class="offcanvas__sub_menu">
-                                <li class="offcanvas__sub_menu_li"><a href="index.html" class="offcanvas__sub_menu_item">Home One</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="index-2.html" class="offcanvas__sub_menu_item">Home Two</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="index-3.html" class="offcanvas__sub_menu_item">Home Three</a></li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas__menu_li">
-                            <a class="offcanvas__menu_item" href="#">Shop</a>
-                            <ul class="offcanvas__sub_menu">
-                                <li class="offcanvas__sub_menu_li">
-                                    <a href="#" class="offcanvas__sub_menu_item">Column One</a>
-                                    <ul class="offcanvas__sub_menu">
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop.html">Shop Left Sidebar</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-grid.html">Shop Grid</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-grid-list.html">Shop Grid List</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="shop-list.html">Shop List</a></li>
-                                    </ul>
-                                </li>
-                                <li class="offcanvas__sub_menu_li">
-                                    <a href="#" class="offcanvas__sub_menu_item">Column Two</a>
-                                    <ul class="offcanvas__sub_menu">
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-details.html">Standard Product</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-variable.html">Video Product</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-variable.html">Variable Product</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-left-sidebar.html">Product Left Sidebar</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="product-gallery.html">Product Gallery</a></li>
-                                    </ul>
-                                </li>
-                                <li class="offcanvas__sub_menu_li">
-                                    <a href="#" class="offcanvas__sub_menu_item">Column Three</a>
-                                    <ul class="offcanvas__sub_menu">
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account.html">My Account</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="my-account-2.html">My Account 2</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="404.html">404 Page</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="login.html">Login Page</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="faq.html">Faq Page</a></li>
-                                    </ul>
-                                </li>
-                                <li class="offcanvas__sub_menu_li">
-                                    <a href="#" class="offcanvas__sub_menu_item">Column Four</a>
-                                    <ul class="offcanvas__sub_menu">
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="compare.html">Compare Pages</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="cart.html">Cart Page</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="checkout.html">Checkout page</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="wishlist.html">Wishlist Page</a></li>
-                                        <li class="offcanvas__sub_menu_li"><a class="offcanvas__sub_menu_item" href="404.html">Error Page</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas__menu_li">
-                            <a class="offcanvas__menu_item" href="#">Blog</a>
-                            <ul class="offcanvas__sub_menu">
-                                <li class="offcanvas__sub_menu_li"><a href="blog.html" class="offcanvas__sub_menu_item">Blog Grid</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="blog-details.html" class="offcanvas__sub_menu_item">Blog Details</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="blog-left-sidebar.html" class="offcanvas__sub_menu_item">Blog Left Sidebar</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="blog-right-sidebar.html" class="offcanvas__sub_menu_item">Blog Right Sidebar</a></li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas__menu_li">
-                            <a class="offcanvas__menu_item" href="#">Pages</a>
-                            <ul class="offcanvas__sub_menu">
-                                <li class="offcanvas__sub_menu_li"><a href="about.html" class="offcanvas__sub_menu_item">About Us</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="contact.html" class="offcanvas__sub_menu_item">Contact Us</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="cart.html" class="offcanvas__sub_menu_item">Cart Page</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="portfolio.html" class="offcanvas__sub_menu_item">Portfolio Page</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="wishlist.html" class="offcanvas__sub_menu_item">Wishlist Page</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="login.html" class="offcanvas__sub_menu_item">Login Page</a></li>
-                                <li class="offcanvas__sub_menu_li"><a href="404.html" class="offcanvas__sub_menu_item">Error Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="about.html">About</a></li>
-                        <li class="offcanvas__menu_li"><a class="offcanvas__menu_item" href="contact.html">Contact</a></li>
-                    </ul>
-                    <div class="offcanvas__account&#45;&#45;items">
-                        <a class="offcanvas__account&#45;&#45;items__btn d-flex align-items-center" href="login.html">
-                        <span class="offcanvas__account&#45;&#45;items__icon">
-                            <svg xmlns="http://www.w3.org/2000/svg"  width="20.51" height="19.443" viewBox="0 0 512 512"><path d="M344 144c-3.92 52.87-44 96-88 96s-84.15-43.12-88-96c-4-55 35-96 88-96s92 42 88 96z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/><path d="M256 304c-87 0-175.3 48-191.64 138.6C62.39 453.52 68.57 464 80 464h352c11.44 0 17.62-10.48 15.65-21.4C431.3 352 343 304 256 304z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/></svg>
-                            </span>
-                        <span class="offcanvas__account&#45;&#45;items__label">Login / Register</span>
-                        </a>
-                    </div>
-                    <div class="language__currency">
-                        <ul class="d-flex align-items-center">
-                            <li class="language__currency&#45;&#45;list">
-                                <a class="offcanvas__language&#45;&#45;switcher" href="#">
-                                    <img class="language__switcher&#45;&#45;icon__img" src="../static/img/icon/language-icon.webp" alt="currency">
-                                    <span>English</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
-                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                    </svg>
-                                </a>
-                                <div class="offcanvas__dropdown&#45;&#45;language">
-                                    <ul>
-                                        <li class="language__items"><a class="language__text" href="#">France</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Russia</a></li>
-                                        <li class="language__items"><a class="language__text" href="#">Spanish</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="language__currency&#45;&#45;list">
-                                <a class="offcanvas__account&#45;&#45;currency__menu" href="#">
-                                    <img src="../static/img/icon/usd-icon.webp" alt="currency">
-                                    <span>$ US Dollar</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="11.797" height="9.05" viewBox="0 0 9.797 6.05">
-                                        <path  d="M14.646,8.59,10.9,12.329,7.151,8.59,6,9.741l4.9,4.9,4.9-4.9Z" transform="translate(-6 -8.59)" fill="currentColor" opacity="0.7"/>
-                                    </svg>
-                                </a>
-                                <div class="offcanvas__account&#45;&#45;currency__submenu">
-                                    <ul>
-                                        <li class="currency__items"><a class="currency__text" href="#">CAD</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">CNY</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">EUR</a></li>
-                                        <li class="currency__items"><a class="currency__text" href="#">GBP</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
+        {% include 'includes/inc_offcanvas_header_menu.html' %}
         <!-- End Offcanvas header menu-->
 
         <!-- Start Offcanvas stikcy toolbar-->
         <div class="offcanvas__stikcy&#45;&#45;toolbar" tabindex="-1">
             <ul class="d-flex justify-content-between">
                 <li class="offcanvas__stikcy&#45;&#45;toolbar__list">
-                    <a class="offcanvas__stikcy&#45;&#45;toolbar__btn" href="index.html">
+                    <a class="offcanvas__stikcy&#45;&#45;toolbar__btn" href="{% url 'store:index' %}">
                     <span class="offcanvas__stikcy&#45;&#45;toolbar__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="21.51" height="21.443" viewBox="0 0 22 17"><path fill="currentColor" d="M20.9141 7.93359c.1406.11719.2109.26953.2109.45703 0 .14063-.0469.25782-.1406.35157l-.3516.42187c-.1172.14063-.2578.21094-.4219.21094-.1406 0-.2578-.04688-.3515-.14062l-.9844-.77344V15c0 .3047-.1172.5625-.3516.7734-.2109.2344-.4687.3516-.7734.3516h-4.5c-.3047 0-.5742-.1172-.8086-.3516-.2109-.2109-.3164-.4687-.3164-.7734v-3.6562h-2.25V15c0 .3047-.11719.5625-.35156.7734-.21094.2344-.46875.3516-.77344.3516h-4.5c-.30469 0-.57422-.1172-.80859-.3516-.21094-.2109-.31641-.4687-.31641-.7734V8.46094l-.94922.77344c-.11719.09374-.24609.14062-.38672.14062-.16406 0-.30468-.07031-.42187-.21094l-.35157-.42187C.921875 8.625.875 8.50781.875 8.39062c0-.1875.070312-.33984.21094-.45703L9.73438.832031C10.1094.527344 10.5312.375 11 .375s.8906.152344 1.2656.457031l8.6485 7.101559zm-3.7266 6.50391V7.05469L11 1.99219l-6.1875 5.0625v7.38281h3.375v-3.6563c0-.3046.10547-.5624.31641-.7734.23437-.23436.5039-.35155.80859-.35155h3.375c.3047 0 .5625.11719.7734.35155.2344.211.3516.4688.3516.7734v3.6563h3.375z"></path></svg>
                         </span>
@@ -381,7 +229,7 @@
                     </a>
                 </li>
                 <li class="offcanvas__stikcy&#45;&#45;toolbar__list">
-                    <a class="offcanvas__stikcy&#45;&#45;toolbar__btn" href="shop.html">
+                    <a class="offcanvas__stikcy&#45;&#45;toolbar__btn" href="{% url 'store:shop_main' %}">
                     <span class="offcanvas__stikcy&#45;&#45;toolbar__icon">
                         <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="18.51" height="17.443" viewBox="0 0 448 512"><path d="M416 32H32A32 32 0 0 0 0 64v384a32 32 0 0 0 32 32h384a32 32 0 0 0 32-32V64a32 32 0 0 0-32-32zm-16 48v152H248V80zm-200 0v152H48V80zM48 432V280h152v152zm200 0V280h152v152z"></path></svg>
                         </span>
@@ -537,7 +385,7 @@
                                 </svg>
                             </h2>
                             <div class="footer__widget&#45;&#45;inner">
-                                <a class="footer__logo" href="index.html"><img src="../static/img/logo/nav-log.webp" alt="footer-logo"></a>
+                                <a class="footer__logo" href="{% url 'store:index' %}"><img src="../static/img/logo/nav-log.webp" alt="footer-logo"></a>
                                 <p class="footer__widget&#45;&#45;desc">Ut enim ad minim veniam, quis <br> nostrud exercitation ullamco laboris <br> nisi ut aliquip ex ea commodo.</p>
                                 <div class="footer__social">
                                     <ul class="social__shear d-flex">
@@ -588,7 +436,7 @@
                             <ul class="footer__widget&#45;&#45;menu footer__widget&#45;&#45;inner">
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="about.html">About Us</a></li>
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="wishlist.html">Wishlist</a></li>
-                                <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="contact.html">Contact Us</a></li>
+                                <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="{% url 'store:contact' %}">Contact Us</a></li>
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="privacy-policy.html">Privacy Policy</a></li>
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="faq.html">Frequently</a></li>
                             </ul>
@@ -602,7 +450,7 @@
                                 </svg>
                             </h2>
                             <ul class="footer__widget&#45;&#45;menu footer__widget&#45;&#45;inner">
-                                <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="my-account.html">My Account</a></li>
+                                <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="#">My Account</a></li>
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="cart.html">Shopping Cart</a></li>
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="login.html">Login</a></li>
                                 <li class="footer__widget&#45;&#45;menu__list"><a class="footer__widget&#45;&#45;menu__text" href="login.html">Register</a></li>
@@ -636,7 +484,7 @@
                 </div>
             </div>
             <div class="footer__bottom d-flex justify-content-between align-items-center">
-                <p class="copyright__content">Copyright © 2022 <a class="copyright__content&#45;&#45;link" href="index.html">Furea</a> . All Rights Reserved.Design By Furea</p>
+                <p class="copyright__content">Copyright © 2022 <a class="copyright__content&#45;&#45;link" href="{% url 'store:index' %}">Furea</a> . All Rights Reserved.Design By Furea</p>
                 <div class="footer__payment text-right">
                     <img class="footer__payment&#45;&#45;visa__card display-block" src="../static/img/other/payment-visa-card.webp" alt="visa-card">
                 </div>
@@ -953,13 +801,13 @@
     <button aria-label="scroll top btn" id="scroll__top"><svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 244l144-144 144 144M256 120v292"/></svg></button>
 
   <!-- All Script JS Plugins here -->
-  <script src="../static/js/vendor/popper.js" defer="defer"></script>
-  <script src="../static/js/vendor/bootstrap.min.js" defer="defer"></script>
-  <script src="../static/js/plugins/swiper-bundle.min.js" defer="defer"></script>
-  <script src="../static/js/plugins/glightbox.min.js" defer="defer"></script>
+  <script src="{% static 'js/vendor/popper.js' %}" defer="defer"></script>
+  <script src="{% static 'js/vendor/bootstrap.min.js' %}" defer="defer"></script>
+  <script src="{% static 'js/plugins/swiper-bundle.min.js' %}" defer="defer"></script>
+  <script src="{% static 'js/plugins/glightbox.min.js' %}" defer="defer"></script>
 
   <!-- Customscript js-->
-  <script src="../static/js/script.js" defer="defer"></script>
+  <script src="{% static 'js/script.js' %}" defer="defer"></script>
 
 </body>
 </html>
