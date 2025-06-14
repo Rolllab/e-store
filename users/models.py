@@ -18,9 +18,9 @@ class User(AbstractUser):
     role = models.CharField(max_length=9, choices=UserRoles.choices, default=UserRoles.USER)
     first_name = models.CharField(max_length=150, verbose_name='Имя', default='Anonymous')
     last_name = models.CharField(max_length=150, verbose_name='Фамилия', default='Anonym')
-    phone = models.CharField(max_length=35, verbose_name='Телефон', **NULLABLE)            # не обязательное поле
-    telegram = models.CharField(max_length=150, verbose_name='Телеграм', **NULLABLE)   # не обязательное поле
-    avatar = models.ImageField(upload_to='users/', verbose_name='Аватар', **NULLABLE)
+    phone = models.CharField(max_length=35, verbose_name='Телефон', **NULLABLE)             # не обязательное поле
+    telegram = models.CharField(max_length=150, verbose_name='Телеграм', **NULLABLE)        # не обязательное поле
+    avatar = models.ImageField(upload_to='users/', verbose_name='Аватар', **NULLABLE)       # не обязательное поле
     is_active = models.BooleanField(default=True, verbose_name='Активность')
 
     USERNAME_FIELD = 'email'

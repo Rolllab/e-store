@@ -1,0 +1,53 @@
+<div class="col">
+    <div class="account__login">
+
+        <!-- Шапка формы -->
+        <div class="account__login--header mb-25">
+            <h3 class="account__login--header__title mb-10">Login</h3>
+            <p class="account__login--header__desc">Login if you area a returning customer.</p>
+        </div>
+
+        <!-- Форма отправки данных -->
+        <form method="post" action="{% url 'users:user_login' %}">
+                {% csrf_token %}
+
+            <div class="account__login--inner">
+                <!-- Поля email и password -->
+                <label>
+                    <input class="account__login--input" name="email" placeholder="Email Addres" type="email" required>
+                </label>
+                <label>
+                    <input class="account__login--input" name="password" placeholder="Password" type="password" required>
+                </label>
+
+                <!-- Контейнер под чекбокс и забытый пароль -->
+                <div class="account__login--remember__forgot mb-15 d-flex justify-content-between align-items-center">
+                    <!-- Чекбокс "Remember me" -->
+                    <div class="account__login--remember position__relative">
+                        <input class="checkout__checkbox--input" id="check1" type="checkbox">
+                        <span class="checkout__checkbox--checkmark"></span>
+                        <label class="checkout__checkbox--label login__remember--label" for="check1">
+                            Remember me</label>
+                    </div>
+                    <!-- Ссылка для "Forgot Password" -->
+                    <a href="#" class="account__login--forgot">Forgot Your Password?</a>
+                </div>
+                <!-- Кнопка Login -->
+                <button class="account__login--btn primary__btn" type="submit">Login</button>
+
+                <!-- Разделитель -->
+                <div class="account__login--divide">
+                    <span class="account__login--divide__text">OR</span>
+                </div>
+
+                <!-- Ссылки на ресурсы -->
+                <div class="account__social d-flex justify-content-center mb-15">
+                    <a class="account__social--link facebook" target="_blank" href="https://www.facebook.com">Facebook</a>
+                    <a class="account__social--link google" target="_blank" href="https://www.google.com">Google</a>
+                    <a class="account__social--link twitter" target="_blank" href="https://twitter.com">Twitter</a>
+                </div>
+                <p class="account__login--signup__text">Don,t Have an Account? <a href="{% url 'users:user_registration' %}">Sign up now</a></p>
+            </div>
+        </form>
+    </div>
+</div>

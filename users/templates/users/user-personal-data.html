@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main class="main__content_wrapper">
+
+        <!-- Start breadcrumb section -->
+        {% include 'users/includes/inc_hero.html' %}
+        <!-- End breadcrumb section -->
+        
+        <!-- my account section start -->
+        <section class="my__account--section section--padding">
+            <div class="container">
+                <div class="my__account--section__inner border-radius-10 d-flex">
+                    {% include 'users/includes/inc_account_menu.html' %}
+                    <div class="account__wrapper">
+                        <div class="account__content">
+                            <h3 class="account__content--title mb-20">Addresses</h3>
+                            <button class="new__address--btn primary__btn mb-25" type="button">Add a new address</button>
+                            <div class="account__details two">
+                                <h4 class="account__details--title">Default</h4>
+                                <p class="account__details--desc">Admin <br> Dhaka <br> Dhaka 12119 <br> Bangladesh</p>
+                                <a class="account__details--link" href="user-personal-data.html">View Addresses (1)</a>
+                            </div>
+                            <div class="account__details--footer d-flex">
+                                <button class="account__details--footer__btn" type="button">Edit</button>
+                                <button class="account__details--footer__btn" type="button">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- my account section end -->
+
+        <!-- Start Newsletter banner section -->
+        {% include 'includes/inc_newsletter_banner.html' %}
+        <!-- End Newsletter banner section -->
+
+    </main>
+{% endblock %}
