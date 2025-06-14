@@ -150,7 +150,7 @@
                                     <a class="header__menu&#45;&#45;link" href="{% url 'blog:post_list' %}">Blog <span class="menu__plus&#45;&#45;icon">+</span> </a>
                                     <ul class="header__sub&#45;&#45;menu">
                                         {% for post in posts %}
-                                            <li class="header__sub&#45;&#45;menu__items"><a href="{% url 'blog:post_detail' post.pk %}" class="header__sub&#45;&#45;menu__link">Blog Grid</a></li>
+                                            <li class="header__sub&#45;&#45;menu__items"><a href="{% url 'blog:post_detail' post.publish.year post.publish.month post.publish.day post.slug %}" class="header__sub&#45;&#45;menu__link">Blog Grid</a></li>
                                         {% endfor %}
                                         <li class="header__sub&#45;&#45;menu__items"><a href="{{ post }}" class="header__sub&#45;&#45;menu__link">Blog Details</a></li>
                                         <li class="header__sub&#45;&#45;menu__items"><a href="blog-left-sidebar.html" class="header__sub&#45;&#45;menu__link">Blog Left Sidebar</a></li>

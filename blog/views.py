@@ -31,6 +31,21 @@ class PostDetailView(DetailView):
         'title': 'Пост'
     }
 
+    def get_object(self, queryset=None):
+        year = self.kwargs['year']
+        month = self.kwargs['month']
+        day = self.kwargs['day']
+        slug = self.kwargs['post']
+
+        return get_object_or_404(
+            Post,
+            status=Post.Status.PUBLISHED,
+            slug=slug,
+            publish__year=year,
+            publish__month=month,
+            publish__day=day
+        )
+
 
 # def post_detail(request, id):                   # удалить, если PostDetailView написан корректно
 #     post = get_object_or_404(

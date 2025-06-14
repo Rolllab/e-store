@@ -18,7 +18,7 @@
                 </ul>
                 <h3 class="blog__content--title h4"><a href="blog-details.html">{{ post.title|truncatechars:33 }}</a></h3>
                 <p class="blog__content--desc">{{ post.body|truncatechars:33|linebreaks }}</p>
-                <span class="header__sub&#45;&#45;menu__items"><a href="{% url 'blog:post_detail' post.pk %}" class="blog__content--btn primary__btn">Read more</a></span>
+                <span class="header__sub&#45;&#45;menu__items"><a href="{{ post.get_absolute_url }}" class="blog__content--btn primary__btn">Read more</a></span>
             </div>
         </div>
     </div>
