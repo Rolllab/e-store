@@ -1,0 +1,25 @@
+{% load static %}
+{% for post in posts %}
+    <div class="col mb-30">
+        <div class="blog__items">
+            <div class="blog__thumbnail">
+                <a class="blog__thumbnail--link display-block" href="blog-details.html"><img class="blog__thumbnail--img display-block" src="/static/img/blog/blog5.webp" alt="blog-img"></a>
+            </div>
+            <div class="blog__content">
+                <ul class="blog__content--meta d-flex">
+                    <li class="blog__content--meta__text">
+                        <svg class="blog__content--meta__icon" width="11.001" height="11.001" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="{% static 'img/icon/sprite.svg' %}#user-icon"></use></svg>
+                        <span>{{ post.author }}</span>
+                    </li>
+                    <li class="blog__content--meta__text">
+                        <svg class="blog__content--meta__icon" width="12.569" height="13.966" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="{% static 'img/icon/sprite.svg' %}#calendar"></use></svg>
+                        <span>{{ post.updated }}</span>
+                    </li>
+                </ul>
+                <h3 class="blog__content--title h4"><a href="blog-details.html">{{ post.title|truncatechars:33 }}</a></h3>
+                <p class="blog__content--desc">{{ post.body|truncatechars:33|linebreaks }}</p>
+                <span class="header__sub&#45;&#45;menu__items"><a href="{% url 'blog:post_detail' post.pk %}" class="blog__content--btn primary__btn">Read more</a></span>
+            </div>
+        </div>
+    </div>
+{% endfor %}

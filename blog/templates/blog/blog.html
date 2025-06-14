@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main class="main__content_wrapper">
+        
+        <!-- Start breadcrumb section -->
+        {% include 'blog/includes/inc_breadcrumb.html' %}
+        <!-- End breadcrumb section -->
+
+        <!-- Start blog section -->
+        <section class="blog__section section--padding">
+            <div class="container">
+                <div class="section__heading text-center mb-40">
+                    <h2 class="section__heading--maintitle">Latest Post From Blog</h2>
+                </div>
+                <div class="blog__section--inner p-0">
+                    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1 mb--n30">
+                        <!-- Includes all published posts -->
+                        {% include 'blog/includes/inc_post_card.html' %}
+                    </div>
+                     <!-- Includes pagination -->
+                    {% include 'includes/inc_pagination.html' %}
+                </div>
+            </div>
+        </section>
+        <!-- End blog section -->
+
+        <!-- Start Newsletter banner section -->
+        {% include 'includes/inc_newsletter_banner.html' %}
+        <!-- End Newsletter banner section -->
+    </main>
+{% endblock %}
