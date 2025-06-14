@@ -1,17 +1,45 @@
 {% load static %}
+<!-- Пагинация -->
 <div class="pagination__area bg__gray--color">
     <nav class="pagination justify-content-center">
         <ul class="pagination__wrapper d-flex align-items-center justify-content-center">
-            <!-- Includes arrow left -->
-            <svg class="pagination__list" width="22.51" height="20.443" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="{% static 'img/icon/sprite.svg' %}#arrow-left"></use></svg>
+            <!-- Стрелка "назад" -->
+            {% if page_obj.has_previous %}
+                <li class="pagination__list">
+                    <a href="?page={{ page_obj.previous_page_number }}" class="pagination__item link">
+                        <svg width="22.51" height="20.443" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <use xlink:href="{% static 'img/icon/sprite.svg' %}#arrow-left"></use>
+                        </svg>
+                    </a>
+                </li>
+            {% endif %}
 
-            <li class="pagination__list"><span class="pagination__item pagination__item--current">1</span></li>
-            <li class="pagination__list"><a href="blog.html" class="pagination__item link">2</a></li>
-            <li class="pagination__list"><a href="blog.html" class="pagination__item link">3</a></li>
-            <li class="pagination__list"><a href="blog.html" class="pagination__item link">4</a></li>
+            <!-- Номера страниц -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="pagination__list">
+                        <span class="pagination__item pagination__item--current">{{ num }}</span>
+                    </li>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="pagination__list">
+                        <a href="?page={{ num }}" class="pagination__item link">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
 
-            <!-- Includes arrow right -->
-            <svg class="pagination__list" width="22.51" height="20.443" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="{% static 'img/icon/sprite.svg' %}#arrow-right"></use></svg>
+            <!-- Стрелка "вперёд" -->
+            {% if page_obj.has_next %}
+                <li class="pagination__list">
+                    <a href="?page={{ page_obj.next_page_number }}" class="pagination__item link">
+                        <svg width="22.51" height="20.443" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <use xlink:href="{% static 'img/icon/sprite.svg' %}#arrow-right"></use>
+                        </svg>
+                    </a>
+                </li>
+            {% endif %}
         </ul>
     </nav>
+    <div class="text-center mt-2">
+        <span class="text-muted">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+    </div>
 </div>
