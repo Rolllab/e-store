@@ -1,0 +1,31 @@
+{% load static %}
+<script src="{% static 'comments/js/main.js' %}"></script>
+
+{% comment %}
+                Это начальная страница блока с комментариями.
+                Этот шаблон полностью автономен. Он получает все нужные данные от тега.
+{% endcomment %}
+
+<div class="reviews__comment--area2 mb-50">
+    <h3 class="reviews__comment--reply__title mb-25">Комментарии (<span id="comments-total-count"
+        hx-get="{% url 'comments:comment-count' content_type_id=content_type_id object_id=parent_object_id %}"
+        hx-trigger="update-comments-count from:body"
+        hx-target="this">
+        {{ comments_count }}</span>)</h3>
+    <div class="reviews__comment--inner">
+        <div class="reviews__comment--list">
+            <div class="d-block" id="new-comment-{{ model_name }}-{{ parent_object_id }}"></div>
+
+            <!-- Начальный список комментариев (первые 5) -->
+            <div id="comments-list-{{ model_name }}-{{ parent_object_id }}">
+                {% include "comments/partials/_comments_chunk.html" with comments=comments %}
+            </div>
+
+            <!-- Кнопка "Другие комментарии" -->
+            {% include 'comments/partials/_load_more_chunk_with_button.html' %}
+        </div>
+    </div>
+</div>
+
+<!-- Форма для добавления нового комментария -->
+{% include 'comments/partials/_comment_form.html' with form=form object=object model_name=model_name %}

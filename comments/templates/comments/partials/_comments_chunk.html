@@ -1,0 +1,9 @@
+{% comment %}
+                        Используется в
+                                                _comments_block.html,
+                                                _load_more_chunk_with_button.html
+{% endcomment %}
+
+{% for comment in comments %}
+    {% include "comments/partials/_comment_display.html" %}
+{% endfor %}

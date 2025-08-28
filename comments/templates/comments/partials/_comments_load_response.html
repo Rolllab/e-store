@@ -1,0 +1,5 @@
+{% for comment in comments %}
+    {% include "comments/partials/_comment_display.html" %}
+{% endfor %}
+
+{% include 'comments/partials/_load_more_chunk_with_button.html' %}

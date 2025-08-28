@@ -1,0 +1,5 @@
+{% load declension_ru_words %}
+
+{% if replies_count %}
+    {{ replies_count }} {{ replies_count|ru_plural:"ответ,ответа,ответов" }}
+{% endif %}

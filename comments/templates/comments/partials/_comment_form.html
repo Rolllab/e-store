@@ -1,0 +1,26 @@
+{% comment %}
+                Форма для добавления нового комментария.
+{% endcomment %}
+
+<div class="reviews__comment--reply__area">
+    <form id="comment-form" action="" method="POST"
+          hx-post="{% url 'comments:comment_create' model_name=model_name object_id=object.id %}"
+          hx-swap="afterend"
+          hx-on="clean-form: this.reset()"
+          >
+        {% csrf_token %}
+        <h3 class="reviews__comment--reply__title mb-20">Оставить комментарий</h3>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-20">
+                {{ form.name }}
+            </div>
+            <div class="col-lg-4 col-md-6 mb-20">
+                {{ form.email }}
+            </div>
+            <div class="col-12 mb-15">
+                {{ form.body }}
+            </div>
+        </div>
+        <button class="primary__btn text-white" data-hover="Submit" type="submit">Отправить</button>
+    </form>
+</div>

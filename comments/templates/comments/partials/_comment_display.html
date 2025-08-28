@@ -1,0 +1,77 @@
+{% load static %}
+
+{% comment %}
+                                        Универсальная форма комментария.
+{% endcomment %}
+
+
+
+<li class="{% if additional_classes %}{{ additional_classes }}{% endif %}" id="comment-{{ comment.id }}">
+    <div class="reviews__comment--list d-flex">
+        <div class="reviews__comment--thumbnail">
+            {% if comment.user and comment.user.profile.avatar %}
+                <img src="{{ comment.user.profile.avatar.url }}" alt="Аватар {{ comment.name }}">
+            {% else %}
+                <img src="{% static 'img/other/man.jpeg' %}" alt="Аватар по умолчанию">
+            {% endif %}
+        </div>
+        <div class="reviews__comment--content">
+            <h4 class="reviews__comment--content__title2">
+                <strong>
+                    {% if comment.user %}
+                        {{ comment.user.get_full_name|default:comment.user.username }}
+                    {% else %}
+                        {{ comment.name }}
+                    {% endif %}
+                </strong>
+            </h4>
+
+            <span class="reviews__comment--content__date2">
+                {{ comment.created|date:"d.m.Y H:i" }}
+            </span>
+
+            <p class="reviews__comment--content__desc">
+                {{ comment.body|linebreaks }}
+            </p>
+
+            <!-- Показываем кнопку только для комментариев без родителя -->
+            {% if not comment.parent %}
+                <div class="flex flex-column {{ additional_classes }}">
+                    <button class="comment__reply--btn primary__btn"
+                            hx-get="{% url 'comments:get_reply_form' comment.id %}"
+                            hx-target="#reply-form-for-{{ comment.id }}"
+                            hx-swap="innerHTML"
+                            >
+                        Ответить
+                    </button>
+
+                    <!-- Показывает количество ответов на комментарии -->
+                    <div class="d-flex justify-content-end blog__post--meta__link text-primary" style="cursor: pointer;">
+                        <span id="toggle-replies-{{ comment.id }}"
+                              hx-get="{% url 'comments:comment_replies' comment_id=comment.id %}"
+                              hx-target="#replies-for-{{ comment.id }}"
+                              data-content-type-id="{{ comment.content_type_id }}"
+                              data-object-id="{{ comment.object_id }}"
+                              >
+                                {% include 'comments/partials/_reply_count.html' with replies_count=comment.replies.count %}
+                        </span>
+
+                        <!-- Скрытый элемент для хранения _reply_count.html -->
+                        <span id="hidden-reply-count-{{ comment.id }}"
+                              hx-get="{% url 'comments:comment-reply-count' content_type_id=comment.content_type_id object_id=comment.object_id comment_id=comment.id %}"
+                              hx-swap="innerHTML"
+                              hx-trigger="load"
+                              hidden>
+                        </span>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Контейнер для формы ответа -->
+            <div id="reply-form-for-{{ comment.id }}"></div>
+        </div>
+    </div>
+
+    <!-- Контейнер для ответов -->
+    <div id="replies-for-{{ comment.id }}" class="{{ additional_classes|default:'' }}" style="display: none"></div>
+</li>

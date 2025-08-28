@@ -1,0 +1,6 @@
+<ul class="reviews__comment--reply">
+    {% for reply in replies %}
+        {% include "comments/partials/_comment_display.html" with comment=reply additional_classes=additional_classes %}
+    {% endfor %}
+</ul>
+

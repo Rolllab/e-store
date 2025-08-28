@@ -1,0 +1,6 @@
+<span id="comments-total-count"
+    hx-get="{% url 'comments:comment-count' content_type_id=content_type_id object_id=parent_object_id %}"
+    hx-trigger="update-comments-count from:body"
+    hx-swap="outerHTML">
+    {{ comments_count }}
+</span>

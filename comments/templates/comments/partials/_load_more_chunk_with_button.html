@@ -1,0 +1,12 @@
+<div id="load-more-wrapper-{{ model_name }}-{{ parent_object_id }}" hx-swap-oob="true">
+    {% if has_more_comments %}
+        <span class="blog__post--meta__link"
+           hx-get="{% url 'comments:load_more_comments' model_name=model_name object_id=parent_object_id %}?offset={{ new_offset }}"
+           hx-target="#comments-list-{{ model_name }}-{{ parent_object_id }}"
+           hx-swap="beforeend"
+           style="cursor: pointer;">
+            Другие комментарии
+        </span>
+    {% endif %}
+</div>
+

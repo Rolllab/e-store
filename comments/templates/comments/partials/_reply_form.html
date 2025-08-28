@@ -1,0 +1,20 @@
+<form class="reply-form mt-3"
+      data-parent-id="{{ parent_comment.id }}"
+      data-content-type-id="{{ parent_comment.content_type_id }}"
+      data-object-id="{{ parent_comment.object_id }}"
+      data-comment-id="{{ parent_comment.id }}"
+      hx-post="{% url 'comments:comment_create' model_name=parent_comment.content_type.model object_id=parent_comment.object_id %}"
+      hx-swap="afterbegin">
+
+    {% csrf_token %}
+    <input type="hidden" name="parent_id" value="{{ parent_comment.id }}">
+    {{ form.body }}
+    <div class="mt-2">
+        <button type="submit" class="primary__btn">Отправить ответ</button>
+        <button type="button" class="secondary__btn"
+                _="on click remove my.closest('form')">
+            Отмена
+        </button>
+    </div>
+</form>
+
