@@ -15,6 +15,7 @@ class CommentInline(GenericTabularInline):
     fields = ('name', 'email', 'body', 'active')                # Поля для отображения
     extra = 0                                                   # Количество пустых форм для добавления
     readonly_fields = ('created', 'updated')                    # Даты лучше сделать только для чтения
+    classes = ['collapse']                                      # Делает "аккордеон" по умолчанию
 
 
 class ObjectTypeFilter(admin.SimpleListFilter):
